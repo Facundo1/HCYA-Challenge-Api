@@ -22,7 +22,6 @@ export default function ProductFiltersView() {
   const [supercategories, setSupercategories] = useState<Supercategory[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [subcategories, setSubcategories] = useState<Subcategory[]>([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     loadInitialData();
@@ -38,7 +37,6 @@ export default function ProductFiltersView() {
 
   const loadInitialData = async () => {
     try {
-      setLoading(true);
       const [brandsRes, supercategoriesRes, categoriesRes, subcategoriesRes] = await Promise.all([
         brandService.getAll(),
         supercategoryService.getAll(),
@@ -51,8 +49,6 @@ export default function ProductFiltersView() {
       setSubcategories(subcategoriesRes.data || []);
     } catch (error) {
       console.error("Error cargando datos iniciales:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -64,7 +60,7 @@ export default function ProductFiltersView() {
     !filters.categoryId?.length || filters.categoryId.includes(subcat.categoryId.toString())
   ) : [];
 
-  const handleFilterChange = (field: keyof ProductQueryParams, value: any) => {
+  const handleFilterChange = (field: keyof ProductQueryParams, value: unknown) => {
     const newFilters = {
       ...filters,
       [field]: value,

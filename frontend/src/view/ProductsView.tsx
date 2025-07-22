@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Typography, Box, Button, Paper } from "@mui/material";
 import { Add as AddIcon, FilterList as FilterIcon } from "@mui/icons-material";
 import ProductFiltersView from "./ProductFiltersView";
@@ -7,7 +6,6 @@ import ProductFormView from "./ProductFormView";
 import ProductFeedbackView from "./ProductFeedbackView";
 
 export default function ProductsView() {
-  const [loading, setLoading] = useState(false);
 
   const openCreateModal = () => {
     const event = new CustomEvent('openCreateModal');
@@ -24,7 +22,6 @@ export default function ProductsView() {
           variant="contained"
           startIcon={<AddIcon />}
           onClick={openCreateModal}
-          disabled={loading}
         >
           Nuevo Producto
         </Button>

@@ -17,6 +17,14 @@ export default function Categories() {
     loadData();
   }, []);
 
+  if (loading) {
+    return (
+      <Box p={2}>
+        <Typography variant="h6">Cargando datos...</Typography>
+      </Box>
+    );
+  }
+
   const loadData = async () => {
     try {
       setLoading(true);

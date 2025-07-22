@@ -91,7 +91,7 @@ export default function ProductTableView() {
 
       setProducts(productsArray);
       setTotalProducts(response.total || 0);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error cargando productos:", error);
       setProducts([]);
       setTotalProducts(0);
@@ -100,7 +100,7 @@ export default function ProductTableView() {
     }
   };
 
-  const handlePageChange = (event: unknown, newPage: number) => {
+  const handlePageChange = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 

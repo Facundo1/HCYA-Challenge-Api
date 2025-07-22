@@ -8,7 +8,6 @@ import type { Brand, Category, Subcategory, Supercategory } from "../types/produ
 export default function ProductFormView() {
   const [open, setOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<NewProduct>(createEmptyProduct());
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
@@ -69,7 +68,7 @@ export default function ProductFormView() {
     }
   };
 
-  const handleFormChange = (field: keyof NewProduct, value: any) => {
+  const handleFormChange = (field: keyof NewProduct, value: unknown) => {
     setFormData(prev => ({
       ...prev,
       [field]: value,
@@ -147,7 +146,7 @@ export default function ProductFormView() {
       editingProduct={editingProduct}
       formData={formData}
       errors={errors}
-      loading={loading}
+      loading={false}
       brands={brands}
       supercategories={supercategories}
       categories={categories}
