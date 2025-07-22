@@ -22,9 +22,6 @@ export const createDefaultFilters = (): ProductQueryParams => ({
   categoryId: [],
   subcategoryId: [],
   supercategoryId: [],
-  name_like: "",
-  description_like: "",
-  sku_like: "",
 });
 
 export const productToFormData = (product: Product): NewProduct => ({
@@ -55,7 +52,7 @@ export const clearFilters = (setFilters: (filters: ProductQueryParams | ((prev: 
 
 export const handleFilterChange = (
   field: keyof ProductQueryParams,
-  value: any,
+  value: unknown,
   setFilters: (filters: ProductQueryParams | ((prev: ProductQueryParams) => ProductQueryParams)) => void,
   setPage: (page: number) => void
 ) => {

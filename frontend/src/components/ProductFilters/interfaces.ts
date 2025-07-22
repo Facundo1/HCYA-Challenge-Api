@@ -7,7 +7,6 @@ export interface ProductFiltersProps {
     supercategories: Supercategory[];
     categories: Category[];
     subcategories: Subcategory[];
-    onFilterChange: (field: keyof ProductQueryParams, value: any) => void;
-    onSearchChange: (field: keyof ProductQueryParams, value: string) => void;
+    onFilterChange: (field: keyof ProductQueryParams, value: unknown) => void;
     onClearFilters: () => void;
 }

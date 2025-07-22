@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import ProductFilters from "../components/ProductFilters/ProductFilters";
 import { brandService, categoryService, subcategoryService, supercategoryService } from "../services";
 import type { ProductQueryParams } from "../types/product.types";
@@ -14,9 +14,6 @@ export default function ProductFiltersView() {
     categoryId: [],
     subcategoryId: [],
     supercategoryId: [],
-    name_like: "",
-    description_like: "",
-    sku_like: "",
   });
   const [brands, setBrands] = useState<Brand[]>([]);
   const [supercategories, setSupercategories] = useState<Supercategory[]>([]);
@@ -27,13 +24,7 @@ export default function ProductFiltersView() {
     loadInitialData();
   }, []);
 
-  useEffect(() => {
-    return () => {
-      if (searchTimeoutRef.current) {
-        clearTimeout(searchTimeoutRef.current);
-      }
-    };
-  }, []);
+
 
   const loadInitialData = async () => {
     try {
@@ -74,32 +65,7 @@ export default function ProductFiltersView() {
     window.dispatchEvent(event);
   };
 
-  const searchTimeoutRef = useRef<number | null>(null);
 
-  const handleSearchChange = (field: keyof ProductQueryParams, value: string) => {
-    setFilters(prev => ({
-      ...prev,
-      [field]: value,
-      _page: 1,
-    }));
-
-    if (searchTimeoutRef.current) {
-      clearTimeout(searchTimeoutRef.current);
-    }
-
-    searchTimeoutRef.current = setTimeout(() => {
-      const newFilters = {
-        ...filters,
-        [field]: value,
-        _page: 1,
-      };
-
-      const event = new CustomEvent('filtersChanged', {
-        detail: { filters: newFilters }
-      });
-      window.dispatchEvent(event);
-    }, 300);
-  };
 
   const handleClearFilters = () => {
     const newFilters = {
@@ -111,9 +77,6 @@ export default function ProductFiltersView() {
       categoryId: [],
       subcategoryId: [],
       supercategoryId: [],
-      name_like: "",
-      description_like: "",
-      sku_like: "",
     };
     setFilters(newFilters);
 
@@ -131,7 +94,6 @@ export default function ProductFiltersView() {
       categories={filteredCategories}
       subcategories={filteredSubcategories}
       onFilterChange={handleFilterChange}
-      onSearchChange={handleSearchChange}
       onClearFilters={handleClearFilters}
     />
   );

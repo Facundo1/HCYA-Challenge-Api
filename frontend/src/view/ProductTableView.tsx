@@ -22,9 +22,6 @@ export default function ProductTableView() {
     categoryId: [],
     subcategoryId: [],
     supercategoryId: [],
-    name_like: "",
-    description_like: "",
-    sku_like: "",
   });
 
   const [brands, setBrands] = useState<Brand[]>([]);

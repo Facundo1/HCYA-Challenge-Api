@@ -1,6 +1,5 @@
 import {
   Box,
-  TextField,
   FormControl,
   InputLabel,
   Select,
@@ -8,7 +7,7 @@ import {
   OutlinedInput,
   Button,
 } from "@mui/material";
-import { Search as SearchIcon, Clear as ClearIcon } from "@mui/icons-material";
+import { Clear as ClearIcon } from "@mui/icons-material";
 import type { ProductFiltersProps } from "./interfaces";
 
 export default function ProductFilters({
@@ -18,45 +17,11 @@ export default function ProductFilters({
   categories,
   subcategories,
   onFilterChange,
-  onSearchChange,
   onClearFilters,
 }: ProductFiltersProps) {
 
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-      <Box sx={{ flex: '1 1 300px', minWidth: 0 }}>
-        <TextField
-          fullWidth
-          label="Buscar por nombre"
-          value={filters.name_like || ""}
-          onChange={(e) => onSearchChange("name_like", e.target.value)}
-          InputProps={{
-            startAdornment: <SearchIcon sx={{ mr: 1, color: "text.secondary" }} />,
-          }}
-        />
-      </Box>
-      <Box sx={{ flex: '1 1 300px', minWidth: 0 }}>
-        <TextField
-          fullWidth
-          label="Buscar por descripción"
-          value={filters.description_like || ""}
-          onChange={(e) => onSearchChange("description_like", e.target.value)}
-          InputProps={{
-            startAdornment: <SearchIcon sx={{ mr: 1, color: "text.secondary" }} />,
-          }}
-        />
-      </Box>
-      <Box sx={{ flex: '1 1 300px', minWidth: 0 }}>
-        <TextField
-          fullWidth
-          label="Buscar por SKU"
-          value={filters.sku_like || ""}
-          onChange={(e) => onSearchChange("sku_like", e.target.value)}
-          InputProps={{
-            startAdornment: <SearchIcon sx={{ mr: 1, color: "text.secondary" }} />,
-          }}
-        />
-      </Box>
       <Box sx={{ flex: '1 1 200px', minWidth: 0 }}>
         <FormControl fullWidth>
           <InputLabel>Supercategoría</InputLabel>

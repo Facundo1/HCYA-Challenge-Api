@@ -56,9 +56,6 @@ export interface ProductQueryParams {
   subcategoryId?: string[];
   categoryId?: string[];
   supercategoryId?: string[];
-  name_like?: string;
-  description_like?: string;
-  sku_like?: string;
   stock_gte?: number;
   stock_lte?: number;
   price_gte?: number;
